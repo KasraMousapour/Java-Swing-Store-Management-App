@@ -1,0 +1,123 @@
+@startuml
+class model.User {
+- String username
+- Float inventory
++ <<Create>> User(String,String,String,String,String)
++ <<Create>> User(String,String,String,String,Float,String)
++ <<Create>> User(String,String,String,String,String,String,Float,String)
++ String getUsername()
++ void setUsername(String)
++ String getFullName()
++ void setFullName(String)
++ String getPassword()
++ void setPassword(String)
++ String getEmail()
++ void setEmail(String)
++ String getAccessLevel()
++ void setAccessLevel(String)
++ String getAddress()
++ void setAddress(String)
++ String getPhoneNumber()
++ void setPhoneNumber(String)
++ Float getInventory()
++ void setInventory(Float)
+}
+
+
+class model.dao.SaleDAO {
+- Connection connection
+- String query
+- PreparedStatement statement
+- ResultSet result
+- int insertedLines
++ <<Create>> SaleDAO()
++ boolean createSale(Sale)
++ boolean updateSale(Sale)
++ boolean deleteSale(int)
++ String[][] readSalesTableData()
++ void close()
+}
+
+
+class model.dao.ProductDAO {
+- Connection connection
+- String query
+- PreparedStatement statement
+- int insertedLines
++ <<Create>> ProductDAO()
++ boolean createProduct(Product)
++ String[][] readProductsTableData()
++ String[][] readProductsTableData2()
++ String readProductNum(Integer)
++ boolean updateProduct(Product)
++ boolean updateProductNum(String,Integer)
++ boolean deleteProduct(int)
++ void close()
+}
+
+
+class model.dao.UserDAO {
+- Connection connection
+- String query
+- PreparedStatement statement
+- ResultSet result
+- int insertedLines
++ <<Create>> UserDAO()
++ boolean createUser(User)
++ User readUser(String)
++ boolean updateUser(User)
++ boolean updateUser2(User)
++ boolean updateUserPassword(User)
++ boolean updateUserInventory(User)
++ boolean deleteUser(String)
++ String[] readAllAttendants()
++ String[][] readUsersTableData()
++ void close()
+}
+
+
+class model.MySQLConnector {
+~ {static} String dataBaseURL
+~ {static} String username
+~ {static} String password
++ {static} Connection getConnection()
+}
+
+
+class model.Product {
+- int id
+- String name
++ <<Create>> Product(Integer,String,String,String,String)
++ int getId()
++ void setId(int)
++ void setName(String)
++ String getName()
++ String getCategory()
++ void setCategory(String)
++ String getPrice()
++ void setPrice(String)
++ String getNumber()
++ void setNumber(String)
+}
+
+
+class model.Sale {
+- int id
+- float totalCost
+- String sellerUsername
+- int number
++ <<Create>> Sale(int,float,String,String,int)
++ int getId()
++ void setId(int)
++ float getTotalCost()
++ void setTotalCost(float)
++ String getSellerUsername()
++ void setSellerUsername(String)
++ String getDate()
++ void setDate(String)
++ int getNumber()
++ void setNumber(int)
+}
+
+
+@enduml

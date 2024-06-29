@@ -1,0 +1,247 @@
+@startuml
+class view.MenuFrame {
+- JPanel mainPanel
+- JLabel iconLabel
+- String deniedUserAccessLevel
+- String loggedUserName
+- JButton newSaleButton
+- Dimension buttonsDimension
+- Color mainPanelColor
+- ImageIcon helloIcon
+- User currentlyLoggedUser
+- UserDAO userDAO
+- File settingsFile
+- FileReader fileReader
+- HashMap<String,String> settingsMap
+~ <<Create>> MenuFrame()
+- void setLineDesign(ImageIcon,JButton)
++ void actionPerformed(ActionEvent)
+}
+
+
+class view.SearchSaleFrame {
+- JPanel bottomPanel
+- JButton backButton
+- Dimension tableDimension
+- Color mainColor
+- JTable table
+- DefaultTableModel tableModel
+- JScrollPane scrollPane
+- Object[][] tableData
+- String[] tableColumns
+- SaleDAO saleDAO
+~ <<Create>> SearchSaleFrame()
+- void setButtonDesign(JButton)
+- void generateCSVFromTable()
++ void actionPerformed(ActionEvent)
+}
+
+
+class view.Main {
++ {static} void main(String[])
+}
+
+class view.ChangePasswordFrame {
+- JLabel currentPwLabel
+- JPasswordField currentPasswordField
+- JButton okButton
+- Color mainColor
+- Font mainFont
+- User currentlyLoggedUser
+- UserDAO userDAO
+- Dimension labelDimension
+~ <<Create>> ChangePasswordFrame(String)
+- void setButtonDesign(JButton)
++ void setTextFieldDesign(JTextField)
++ void setLabelDesign(JLabel)
++ void actionPerformed(ActionEvent)
+}
+
+
+class view.ManageUsersFrame {
+- JPanel bottomPanel
+- JLabel usernameLabel
+- JTextField usernameTextField
+- JComboBox<String> userAccessLevelComboBox
+- JButton backButton
+- Dimension labelDimension
+- Color mainColor
+- DefaultTableModel tableModel
+- JTable userDataTable
+- JScrollPane scrollPane
+- Object[][] userData
+- String[] tableColumns
+- UserDAO userDAO
+~ <<Create>> ManageUsersFrame()
+- void setTextFieldDesign(JLabel,JTextField)
+- void setButtonDesign(JButton)
+- boolean isBoxesEmpty()
+- void emptyBoxes()
+- void updateTable()
+- void dbCreateUser(User)
+- void dbUpdateUser(User)
+- void dbDeleteUser()
++ void actionPerformed(ActionEvent)
+}
+
+
+class view.NewSaleFrame {
+- JPanel bottomPanel
+- JLabel totalCostLabel
+- JTextField totalCostTextField
+- JComboBox<String> sortComboBox
+- JButton backButton
+- Font mainFont
+- Dimension labelDimension
+- Color mainColor
+- DefaultTableModel saleTableModel
+- JTable saleTable
+- TableRowSorter<TableModel> tableRowSorter
+- List<RowSorter.SortKey> sortKeys
+- JScrollPane saleScrollPane
+- Object[][] saleData
+- Object[][] productsData
+- String[] productsTableColumns
+- List<String> itemsList
+- int tableRowsNumber
+- int tableColumnsNumber
+- int columnIndexToSort
+- Float totalCost
+- Integer totalNumber
+- DateTimeFormatter dateTimeFormatter
+- LocalDateTime now
+- SaleDAO saleDAO
+- ProductDAO productDAO
+- UserDAO userDAO
+- User currentlyLoggedUser
+~ <<Create>> NewSaleFrame(String)
+- void setButtonDesign(JButton)
+- void updateTable()
+- String[][] getSaleItems()
+- void addItem()
+- void removeItem()
+- void saveSale()
+- void backToMenu()
++ void actionPerformed(ActionEvent)
+}
+
+
+class view.SignUpFrame {
+- JPanel logoPanel
+- JLabel logoLabel
+- JTextField usernameTextField
+- JPasswordField passwordTextField
+- JButton signUpButton
+- Dimension inputBoxDimension
+- Color logoPanelColor
+- ImageIcon logoIcon
+- UserDAO userDAO
+~ MouseAdapter mouseAdapter
+~ <<Create>> SignUpFrame()
+- void setTextFieldDesign(JLabel,JTextField)
+- boolean isBoxesEmpty()
+- void dbCreateUser(User)
++ void actionPerformed(ActionEvent)
+}
+
+
+class view.LoginFrame {
+- JPanel logoPanel
+- JLabel logoLabel
+- JTextField usernameTextField
+- JPasswordField passwordPasswordField
+- String defaultUsernameText
+- JCheckBox showPasswordCheckBox
+- char defaultPasswordChar
+- JButton loginButton
+- Dimension loginBoxesDimension
+- Color logoPanelColor
+- ImageIcon logoIcon
+- UserDAO userDAO
+- User user
+~ MouseAdapter mouseAdapter
+~ KeyAdapter keyAdapter
+~ <<Create>> LoginFrame()
+- void checkShowPasswordBox()
+- boolean loginAuthentication()
+- void loginAuthorization()
++ void actionPerformed(ActionEvent)
++ void focusGained(FocusEvent)
++ void focusLost(FocusEvent)
+}
+
+
+class view.ManageProductsFrame {
+- JPanel bottomPanel
+- JLabel nameLabel
+- JTextField nameTextField
+- JComboBox<String> categoryComboBox
+- JButton backButton
+- Dimension labelDimension
+- Color mainColor
+- DefaultTableModel tableModel
+- JTable productDataTable
+- JScrollPane scrollPane
+- Object[][] productData
+- String[] tableColumns
+- ProductDAO productDAO
+~ <<Create>> ManageProductsFrame()
+- void setTextFieldDesign(JLabel,JTextField)
+- void setButtonDesign(JButton)
+- boolean isBoxesEmpty()
+- void emptyBoxes()
+- void updateTable()
+- void dbCreateProduct(Product)
+- void dbUpdateProduct(Product)
+- void dbDeleteProduct()
++ void actionPerformed(ActionEvent)
+}
+
+
+class view.ProfileFrame {
+- JLabel userNameLabel
+- JTextField userNameTextField
+- ArrayList<JTextField> textFields
+- JButton saveButton
+- JPanel topPanel
+- String defaultUserNameText
+- ArrayList<String> defaultTexts
+- Font semiFont
+- Dimension labelDimension
+- Color mainColor
+- UserDAO userDAO
+- User currentlyLoggedUser
+~ <<Create>> ProfileFrame(String)
++ void setLabelDesign(JLabel)
++ void setTextFieldDesign(JTextField)
+- void setButtonDesign(JButton)
++ void dbUpdateUser(User)
++ void actionPerformed(ActionEvent)
++ void focusGained(FocusEvent)
++ void focusLost(FocusEvent)
+}
+
+
+
+
+java.awt.event.ActionListener <|.. view.MenuFrame
+javax.swing.JFrame <|-- view.MenuFrame
+java.awt.event.ActionListener <|.. view.SearchSaleFrame
+view.JFrame <|-- view.SearchSaleFrame
+java.awt.event.ActionListener <|.. view.ChangePasswordFrame
+view.JFrame <|-- view.ChangePasswordFrame
+java.awt.event.ActionListener <|.. view.ManageUsersFrame
+view.JFrame <|-- view.ManageUsersFrame
+view.ActionListener <|.. view.NewSaleFrame
+view.JFrame <|-- view.NewSaleFrame
+view.ActionListener <|.. view.SignUpFrame
+view.JFrame <|-- view.SignUpFrame
+view.ActionListener <|.. view.LoginFrame
+view.FocusListener <|.. view.LoginFrame
+view.JFrame <|-- view.LoginFrame
+java.awt.event.ActionListener <|.. view.ManageProductsFrame
+javax.swing.JFrame <|-- view.ManageProductsFrame
+view.ActionListener <|.. view.ProfileFrame
+view.FocusListener <|.. view.ProfileFrame
+view.JFrame <|-- view.ProfileFrame
+@enduml
