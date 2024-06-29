@@ -15,7 +15,7 @@ PPS: The Mavem framework has been added to the project, still, no unit tests wer
 ## Screenshots
 
 ### Login
-![Login page screenshot](images/screenshots/login_page_screenshot.jpg)
+![Login page screenshot](images/screenshots/Login_page_screenshot.jpg)
 
 ### Sign up
 ![Sign-up page screenshot](images/screenshots/Sign-up_page_screenshot.jpg)
@@ -36,4 +36,7 @@ PPS: The Mavem framework has been added to the project, still, no unit tests wer
 ![Search sale page screenshot](images/screenshots/search_sale_page_screenshot.jpg)
 
 ### Profile
-![profile page screenshot](images/screenshots/profile_page_screenshot.jpg)
+![Profile page screenshot](images/screenshots/Profile_page_screenshot.jpg)
+
+### Change password
+![Change_Password_screenshot](images/screenshots/Change_password_page_screenshot.jpg)
